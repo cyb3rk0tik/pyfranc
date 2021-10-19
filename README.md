@@ -98,5 +98,5 @@ All this by [Titus Wormer](https://github.com/wooorm).
 
 ## License
 
-[MIT](https://github.com/cyb3rk0tik/pyfranc/blob/main/LICENSE) © [cyb3rk0tik](https://github.com/cyb3rk0tik)
+[MIT](https://github.com/cyb3rk0tik/pyfranc/blob/master/LICENSE) © [cyb3rk0tik](https://github.com/cyb3rk0tik)
 
