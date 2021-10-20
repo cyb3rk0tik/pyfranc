@@ -25,7 +25,7 @@ franc.lang_detect('')[0][0] # 'und'
 
 # You can change what’s too short (default: 10):
 franc.lang_detect('the')[0][0] # 'und'
-franc('the', minlength=3)[0][0] # 'sco'
+franc.lang_detec('the', minlength=3)[0][0] # 'sco'
 
 [0][0] has taken first value (iso code lang) in first element in output array.
 ```
@@ -70,7 +70,7 @@ optional arguments:
   -p, --percentage  bool     	Print relative match value (in percent).
 ```
 					
-usage:
+`usage:`
 ```	
 # output language
 $ pyfranc_cli -t1 -s "Alle menslike wesens word vry"
