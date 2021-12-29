@@ -18,7 +18,7 @@ pip install pyfranc
 ```python
 from pyfranc import franc
 
-franc.land_detect('Alle menslike wesens word vry')[0][0] # 'afr'
+franc.lang_detect('Alle menslike wesens word vry')[0][0] # 'afr'
 franc.lang_detect('এটি একটি ভাষা একক IBM স্ক্রিপ্ট')[0][0]  # 'ben'
 franc.lang_detect('Alle menneske er fødde til fridom')[0][0] # 'nno'
 franc.lang_detect('')[0][0] # 'und'
