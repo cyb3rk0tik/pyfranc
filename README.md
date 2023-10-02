@@ -73,10 +73,11 @@ optional arguments:
                         Disallow languages.
   -a, --all             Output all raw results.
   -f, --full            Print full name of language (with lang code).
-  -p, --percentage      Print relative match value (in percent).```
-					
+  -p, --percentage      Print relative match value (in percent).
+```
+				
 `usage:`
-```	
+```
 # output language
 $ pyfranc_cli -t 1 -s "Alle menslike wesens word vry"
 # 'afr' : 1.0
