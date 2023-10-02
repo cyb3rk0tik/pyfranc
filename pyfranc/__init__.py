@@ -1,0 +1,5 @@
+__version__ = '0.2.1'
+__title__ = 'pyfranc'
+__package__ = 'pyfranc'
+__author__ = 'cyb3rk0tik'
+__author_email__ = 'cyberkotik@riseup.net'

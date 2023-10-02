@@ -1,6 +1,6 @@
 # Pyfranc
 Text language detection basic on trigrams.
-Support [403](https://github.com/wooorm/franc/blob/main/packages/franc-all/readme.md#support) language from [franc-all](https://github.com/wooorm/franc/tree/main/packages/franc-all)
+Support [414](https://github.com/wooorm/franc/blob/main/packages/franc-all/readme.md#support) language from [franc-all](https://github.com/wooorm/franc/tree/main/packages/franc-all)
 
 ## Install
 
@@ -25,7 +25,7 @@ franc.lang_detect('')[0][0] # 'und'
 
 # You can change what’s too short (default: 10):
 franc.lang_detect('the')[0][0] # 'und'
-franc.lang_detec('the', minlength=3)[0][0] # 'sco'
+franc.lang_detect('the', minlength=3)[0][0] # 'sco'
 
 [0][0] has taken first value (iso code lang) in first element in output array.
 ```
@@ -41,39 +41,44 @@ franc.lang_detect('Considerando ser essencial que os direitos humanos', whitelis
 
 ```python
 franc.lang_detect('Considerando ser essencial que os direitos humanos', blacklist = ['src', 'glg'])
-
 #[['por', 1],
 # ['ina', 0.6211756617394293], 
 # ['spa', 0.6034146900423971], 
 # ['ast', 0.5628509224246592], 
-# ['oci', 0.5583820327718574]
-# ... 310 more items]
+# ['oci', 0.5583820327718574],
+# ... 317 more items]
 ```
 
 ### How CLI
+
+```
+usage: pyfranc_cli [-h] [-v] [-s STRING] [-t TOP] [-m MINLENGTH] [-w [WHITELIST [WHITELIST ...]]]
+                   [-b [BLACKLIST [BLACKLIST ...]]] [-a] [-f] [-p]
+
 CLI to detect the language of text.
 
-```
-usage: pyfranc_cli [-h] --string STRING [--top TOP] [--minlength MINLENGTH]
-                   [--whitelist [WHITELIST [WHITELIST ...]]]
-                   [--blacklist [BLACKLIST [BLACKLIST ...]]] [--percentage]
-
 optional arguments:
-  -h, --help            	show this help message and exit
-  -s, --string 		string	Input string.
-  -t, --top   		int  	Print top results (Default: 5)).
-  -m, --minlength 	int		Minimum string length to accept (Default: 10).
-  -w, --whitelist   [WHITELIST [WHITELIST ...]]
-							Allow languages.
-  -b, --blacklist   [BLACKLIST [BLACKLIST ...]]
-							Disallow languages.
-  -p, --percentage  bool     	Print relative match value (in percent).
-```
+  -h, --help            show this help message and exit
+  -v, --version         Print version number.
+  -s STRING, --string STRING
+                        Input string.
+  -t TOP, --top TOP     Print top results.
+  -m MINLENGTH, --minlength MINLENGTH
+                        Minimum string length to accept.
+  -w [WHITELIST [WHITELIST ...]], --whitelist [WHITELIST [WHITELIST ...]], 
+  -o [WHITELIST [WHITELIST ...]], --only [WHITELIST [WHITELIST ...]]
+                        Allow languages.
+  -b [BLACKLIST [BLACKLIST ...]], --blacklist [BLACKLIST [BLACKLIST ...]], 
+  -i [BLACKLIST [BLACKLIST ...]], --ignore [BLACKLIST [BLACKLIST ...]]
+                        Disallow languages.
+  -a, --all             Output all raw results.
+  -f, --full            Print full name of language (with lang code).
+  -p, --percentage      Print relative match value (in percent).```
 					
 `usage:`
 ```	
 # output language
-$ pyfranc_cli -t1 -s "Alle menslike wesens word vry"
+$ pyfranc_cli -t 1 -s "Alle menslike wesens word vry"
 # 'afr' : 1.0
 
 # output language from stdin (expects utf8)
@@ -81,12 +86,28 @@ $ echo "এটি একটি ভাষা একক IBM স্ক্রিপ�
 # 'ben' : 1.0
 
 # ignore certain languages
-$ pyfranc_cli --blacklist por glg "O Brasil caiu 26 posições"
+$ pyfranc_cli --blacklist por glg -s "O Brasil caiu 26 posições"
 # 'vec' : 1.0
 
 # output language from stdin with only
 $ echo "Alle mennesker er født frie og" | pyfranc_cli -t 1 --whitelist nob dan -s $0
 # 'nob' : 1.0'
+
+# output all results in raw-list format
+$ pyfranc_cli --all -s "Considerando ser essencial que os direitos humanos"
+# [['por', 1.0], ['glg', 0.771284519307895], ... 320 more items]
+
+# display the result language name
+$ pyfranc_cli --full -t 1 -s "Alle menslike wesens word vry"
+# Afrikaans (afr) : 1.0
+
+# output result with relative percentage of value
+$ pyfranc_cli -t 5 --percentage -s "Considerando ser essencial que os direitos humanos"
+# por : 28%
+# glg : 22%
+# ina : 17%
+# spa : 17%
+# ast : 16%
 ```
 
 ## Derivation

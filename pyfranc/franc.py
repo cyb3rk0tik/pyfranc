@@ -43,7 +43,7 @@ def lang_detect(value, **kwargs):
     if kwargs.get('whitelist'): only = kwargs.get('whitelist') 
         
     if kwargs.get('blacklist'): ignore = kwargs.get('blacklist') 
-    
+
     if not value or len(value) < MIN_LENGTH:
         return und()
   
@@ -62,9 +62,12 @@ def normalize(value, distances):
     min = distances[0][1]
     max = len(value) * MAX_DIFFERENCE - min
     index = 0
-
-    while index < len(distances):           
-        distances[index][1] = 1 - (distances[index][1] - min) / max  or 0
+    
+    while index < len(distances): 
+        try: 
+            distances[index][1] = 1 - (distances[index][1] - min) / max or 0 
+        except ZeroDivisionError: 
+            distances[index][1] = 0
         index += 1
         
     return distances
@@ -131,7 +134,7 @@ def filterLanguages(languages, only, ignore):
 def allow(language, only, ignore):
     if len(only) == 0 and len(ignore) == 0:
         return True
-
+    
     return (len(only) == 0 or language in only) and not language in ignore
 
 def und():
