@@ -1,4 +1,7 @@
-{"aar":   "Afar",
+# -*- coding': utf-8 -*
+#!/usr/bin/env python3
+
+code_to_name = {"aar":   "Afar",
 "abk":   "Abkhazian",
 "ace":   "Achinese",
 "acu":   "Achuar-Shiwiar",

@@ -3,7 +3,7 @@
 
 from argparse import ArgumentParser
 from pyfranc import franc
-import json
+from pyfranc import iso639
 
 def main():
     parser = ArgumentParser(description = f'CLI to detect the language of text.')
@@ -44,10 +44,9 @@ def main():
                         help="Print relative match value (in percent).")                         
                                  
     args = parser.parse_args()
-    
-    with open('iso_639_code_name.json', encoding = 'utf-8') as file:
-        code_name = json.loads(file.read())
-    
+
+    code_name = iso639.code_to_name
+  
     if args.version:
         from pyfranc import __version__
         print(__version__)
